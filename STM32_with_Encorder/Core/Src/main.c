@@ -94,7 +94,7 @@ int main(void)
   MX_TIM2_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-  const int CP = 4294967295;
+  const int CP = 4294967295; // カウンターピリオド
   int count;
   __HAL_TIM_SET_COUNTER(&htim2, CP/2);
   HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_1);
@@ -105,6 +105,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	// TIMのCNTから値を取り出してprint
 	count = TIM2->CNT;
 	printf("%d\r\n",count - CP / 2);
 	HAL_Delay(50);
